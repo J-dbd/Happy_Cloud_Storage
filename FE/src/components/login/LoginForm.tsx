@@ -1,9 +1,18 @@
 import { Form, Link } from "react-router-dom";
 import "./loginform.css";
+import { SubmitButton } from "@/components/buttons/Buttons";
 
 const LoginForm = () => {
   //let history = useNavigate();
   //max-w-4xl
+
+  const OpenModal = () => {
+    let modalElement = document.getElementById("x-modal");
+    if (modalElement) {
+      (modalElement as HTMLDialogElement).showModal();
+    }
+  };
+
   return (
     <>
       <Form className="space-y-6" action="#" method="POST">
@@ -37,12 +46,12 @@ const LoginForm = () => {
               비밀번호
             </label>
             <div className="text-sm">
-              <a
-                href="#"
+              <p
                 className="font-semibold text-blue-500 hover:text-blue-300"
+                onClick={OpenModal}
               >
                 비밀번호 찾기
-              </a>
+              </p>
             </div>
           </div>
           <div className="mt-2">
@@ -59,12 +68,7 @@ const LoginForm = () => {
         </div>
 
         <div>
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-md bg-blue-300 px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          >
-            로그인
-          </button>
+          <SubmitButton text="로그인" />
         </div>
       </Form>
 
@@ -77,6 +81,36 @@ const LoginForm = () => {
           회원가입하기
         </Link>
       </p>
+
+      {/* Find Password Modal Component */}
+      <dialog id="x-modal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">비밀번호 찾기</h3>
+          <p className="py-4">가입 시 사용한 이메일을 기입해주세요.</p>
+          <Form className="space-y-6" action="#" method="POST">
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="example@example.com"
+                required
+                className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+            <div>
+              <SubmitButton text="임시 비밀번호 발급받기" />
+            </div>
+          </Form>
+        </div>
+      </dialog>
     </>
   );
 };
