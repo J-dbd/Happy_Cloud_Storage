@@ -1,7 +1,7 @@
+import GoBack from "@/components/buttons/GoBack";
 import {
   useRouteError,
   isRouteErrorResponse,
-  Link,
   useNavigate,
 } from "react-router-dom";
 
@@ -57,11 +57,7 @@ const ErrorPage = () => {
             <p style={{ marginBottom: "20px", marginTop: "10px" }}>
               {errorMessage}
             </p>
-            <div className="card-actions">
-              <button className="btn btn-neutral" onClick={() => history(-1)}>
-                돌아가기
-              </button>
-            </div>
+            <GoBack />
           </div>
         </div>
       </main>

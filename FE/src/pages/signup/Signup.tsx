@@ -1,18 +1,14 @@
-/* TODO: 
- 로그인 화면 구성 
- 로그인 api구축*/
-
-import "./login.css";
-import LoginForm from "@/components/login/LoginForm";
-
+import SignUpForm from "@/components/signup/Signupform";
+import "./signup.css";
 import HCSLogo from "/HCS_logo.svg";
 import GoBack from "@/components/buttons/GoBack";
+import { ToastContainer } from "react-toastify";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <>
       <div
-        className="w-full h-full p-1 mx-auto bg-white-100 rounded-md shadow-md dark:bg-gray-900 mt-20 overflow-auto sm:w-2/5 sm:h-4/5 lg:w-2/5 lg:h-4/5"
+        className="w-full h-full p-1 mx-auto bg-white-100 rounded-md shadow-md dark:bg-gray-900 mt-10 overflow-auto sm:w-3/5 sm:h-full lg:w-3/5 lg:h-full"
         id="lf-box"
       >
         {/* login form component */}
@@ -24,8 +20,9 @@ const Login = () => {
               alt="Happy Cloud Storage Logo"
               className="mx-auto h-20 w-auto"
             />
+            회원가입
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-              <LoginForm />
+              <SignUpForm />
 
               <GoBack />
             </div>
@@ -51,4 +48,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

@@ -7,6 +7,7 @@ import { Route } from "@/lib";
 /* existing imports */
 import Login from "@/pages/login/Login";
 import Landing from "@/pages/landing/Landing";
+import SignUp from "@/pages/signup/Signup";
 
 const ROUTES: Route[] = [
   {
@@ -16,6 +17,10 @@ const ROUTES: Route[] = [
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "signUp",
+    element: <SignUp />,
   },
 ];
 export default ROUTES;
