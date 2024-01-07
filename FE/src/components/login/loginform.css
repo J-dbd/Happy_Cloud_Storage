@@ -1,0 +1,10 @@
+#lf-box {
+  /* login form */
+
+  box-sizing: border-box;
+
+  background: #f9f9f9;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #219ebc;
+}

@@ -5,15 +5,14 @@ import HCSLogo from "/HCS_logo.svg";
 const Header = () => {
   return (
     <header>
-      <h1 id="header_logo_container">
-        <Link to={`/`}>
-          <img
-            src={HCSLogo}
-            className="headerlogo"
-            alt="Happy Cloud Storage Logo"
-          />
-        </Link>
-      </h1>
+      <div id="header_logo_container">
+        <h1 id="logo_box">
+          <Link to={`/`} id="logo_link">
+            <img src={HCSLogo} alt="Happy Cloud Storage Logo" />
+          </Link>
+        </h1>
+      </div>
+
       <Link
         to={`login`}
         id="header_login"

@@ -5,8 +5,8 @@ It will be used for nested routing, used as children under path '/'. Structure i
 /* interface import */
 import { Route } from "@/lib";
 /* existing imports */
-import Login from "@/components/login/Login";
-import Landing from "@/components/landing/Landing";
+import Login from "@/pages/login/Login";
+import Landing from "@/pages/landing/Landing";
 
 const ROUTES: Route[] = [
   {

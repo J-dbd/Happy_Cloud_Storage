@@ -16,4 +16,7 @@
   --color_SlientYello: #ffb703;
   --color_SlientOrange: #fb8500;
   --color_BgWhite: #f5f5f5;
+  /*page sizes*/
+  --size_container_dtw: 1440;
+  --size_container_dth: 900;
 }

@@ -1,7 +1,7 @@
 @import url("@/lib/Variables.css");
 
 header {
-  position: fixed;
+  //position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -22,16 +22,21 @@ header {
   width: 90%;
 }
 
-.headerlogo {
-  max-height: 100px;
-  height: 90%;
-  min-height: 90%;
-  padding: 0.5em;
+#logo_box {
+  width: 10%;
+  min-width: 80px;
+  height: 80%;
+  min-height: 80px;
 
   will-change: filter;
   transition: filter 300ms;
   /* margin: auto;
   display: block; */
+}
+
+#logo_link {
+  z-index: 99;
+  cursor: pointer;
 }
 
 #header_login {

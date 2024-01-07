@@ -3,7 +3,7 @@ import "./landing.css";
 const Landing = () => {
   return (
     <>
-      <div id="root" className="whitespace-pre-line">
+      <div id="landing-container" className="whitespace-pre-line">
         <div className="logo-container">
           <img src={HCSLogo} className="logo" alt="HCSLogo" />
         </div>

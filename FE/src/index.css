@@ -34,7 +34,37 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background: var(--color_BgWhite);
 }
+
+/* custmized setting for basic  */
+/*whole page screen*/
+#root {
+  height: 100vh;
+  width: 100%;
+  //max-width: 1280px;
+  min-width: 900px;
+
+  margin: 0 auto;
+  //padding: 2rem;
+
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* space for rendered components*/
+main {
+  display: flex;
+
+  height: 80vh;
+
+  justify-content: center;
+}
+
+/* #container {
+
+} */
 
 @media (prefers-color-scheme: light) {
   :root {

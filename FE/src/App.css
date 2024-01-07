@@ -1,17 +1,24 @@
 @import url("@/lib/Variables.css");
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  line-height: 1.5;
+/* flex container
+header: flex item
+main: flex item */
+#total-container {
+  display: flex;
+  flex-direction: column; /*배치 방향 설정*/
+  flex-wrap: wrap; /*줄넘김 처리 설정*/
+  justify-content: flex-start; /*메인축 방향 정렬*/
 }
+
+/* main {
+
+} */
 
 #title {
   font-family: "Saira Stencil One", "Noto Sans KR", system-ui, Avenir, Helvetica,
     Arial, sans-serif;
 }
+
 .logo-container {
   display: flex;
   text-align: center;

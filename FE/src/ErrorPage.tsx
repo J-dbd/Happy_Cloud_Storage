@@ -1,4 +1,9 @@
-import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import {
+  useRouteError,
+  isRouteErrorResponse,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -17,10 +22,11 @@ const ErrorPage = () => {
     errorMessage = "Unknown error";
   }
 
+  let history = useNavigate();
   return (
     <>
-      <div id="error-page">
-        <div className="card w-96 bg-base-100 shadow-xl">
+      <main>
+        <div className="mt-10 h-3/4 card w-96 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
             {/* <img
               src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
@@ -52,11 +58,13 @@ const ErrorPage = () => {
               {errorMessage}
             </p>
             <div className="card-actions">
-              <button className="btn btn-neutral">돌아가기</button>
+              <button className="btn btn-neutral" onClick={() => history(-1)}>
+                돌아가기
+              </button>
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };
