@@ -96,7 +96,7 @@ const LoginForm = () => {
           <Form className="space-y-6" action="#" method="POST">
             <div className="mt-2">
               <input
-                id="email"
+                id="emailForFinding"
                 name="email"
                 type="email"
                 autoComplete="email"

@@ -3,7 +3,7 @@
  로그인 api구축*/
 
 import "./login.css";
-import LoginForm from "@/components/login/LoginForm";
+import LoginForm from "@/components/loginForm/LoginForm";
 
 import HCSLogo from "/HCS_logo.svg";
 import GoBack from "@/components/buttons/GoBack";

@@ -98,6 +98,16 @@ main {
   overflow: auto;
 }
 
+#box-container {
+  padding: 0 0.25em 0.25em 0.25em;
+  box-sizing: border-box;
+
+  background: #f9f9f9;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #219ebc;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -9,6 +9,7 @@ import Login from "@/pages/login/Login";
 import Landing from "@/pages/landing/Landing";
 import SignUp from "@/pages/signup/Signup";
 import MyStroage from "@/pages/my-storage/MyStorage";
+import GlobalStorage from "@/pages/global-storage/GlobalStorage";
 
 const ROUTES: Route[] = [
   {
@@ -26,6 +27,10 @@ const ROUTES: Route[] = [
   {
     path: "my-storage",
     element: <MyStroage />,
+  },
+  {
+    path: "global-storage",
+    element: <GlobalStorage />,
   },
 ];
 export default ROUTES;

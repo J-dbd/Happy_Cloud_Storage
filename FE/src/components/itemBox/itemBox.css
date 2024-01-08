@@ -1,4 +1,4 @@
-#ltem-box {
+/* #box-container {
   padding: 0 0.25em 0.25em 0.25em;
   box-sizing: border-box;
 
@@ -6,7 +6,7 @@
   border-width: 2px 0px;
   border-style: solid;
   border-color: #219ebc;
-}
+} */
 
 #post-container {
   flex: 0.5;
@@ -30,6 +30,16 @@
   flex: 0.5;
 }
 
+#post-edcontainer {
+  justify-content: flex-end;
+  padding: 0 2px 0.5em 0;
+}
+#post-ed {
+  width: 9%;
+  margin-right: 3px;
+}
+
 #post-content {
+  flex: 1;
   text-align: left;
 }

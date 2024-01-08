@@ -2,18 +2,19 @@
 import { Post } from "@/lib";
 import "./itemBox.css";
 interface PostProp {
-  key: number;
+  //key: number;
   post: Post;
+  onEditClick: (id: number) => void;
 }
-const ItemBox = ({ key, post }: PostProp) => {
+const ItemBox = ({ post, onEditClick }: PostProp) => {
   return (
     <>
       <article
-        className="w-3/5 h-full max-h-40 p-1 mx-auto bg-white-100 rounded-md shadow-md dark:bg-gray-900 overflow-auto sm:w-2/5 sm:h-4/5 lg:w-3/5 lg:h-full"
-        id="ltem-box"
+        className="w-3/5 h-full min-h-40 max-h-80 p-1 mx-auto bg-white-100 rounded-md shadow-md dark:bg-gray-900 overflow-auto sm:w-2/5 sm:h-4/5 lg:w-3/5 lg:h-full"
+        id="box-container"
       >
-        <div className="w-full flex min-h-full flex-col justify-center  lg:p-1">
-          <div className="flex flex-row items-center" id="post-container">
+        <div className="w-full flex min-h-full flex-col  lg:p-1">
+          <div className="flex flex-row pt-2" id="post-container">
             <h1 id="post-title">{post.title}</h1>
             <p id="post-wd">
               작성자: <span>{post.writer} </span>
@@ -28,6 +29,12 @@ const ItemBox = ({ key, post }: PostProp) => {
             id="post-content"
           >
             {post.content}
+          </div>
+          <div className="flex flex-row pt-2" id="post-edcontainer">
+            <p id="post-ed" onClick={() => onEditClick(post.id)}>
+              수정하기
+            </p>
+            <p id="post-ed">삭제</p>
           </div>
         </div>
       </article>

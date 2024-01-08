@@ -1,5 +1,5 @@
 import BoardData from "@/lib/boardData";
-import "./mystorage.css";
+import "./globalstorage.css";
 import { Post } from "@/lib";
 
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import Loading from "@/components/loading/Loading";
 import PostForm from "@/components/postForm/PostForm";
 import PostList from "@/components/postList/PostList";
 
-const MyStroage = () => {
+const GlobalStorage = () => {
   //TODO: 게시글 정보 받아오기
   //let boardData: Post[];
   //boardData = BoardData;
@@ -21,7 +21,7 @@ const MyStroage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await BoardData;
-      const globalData = data.filter((d) => d.type == 1);
+      const globalData = data.filter((d) => d.type == 0);
       setBoardData(globalData);
       setIsLoading(false);
     };
@@ -50,4 +50,4 @@ const MyStroage = () => {
   );
 };
 
-export default MyStroage;
+export default GlobalStorage;

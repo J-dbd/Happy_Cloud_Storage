@@ -21,9 +21,9 @@ const Header = () => {
         <Link to={`my-storage`} className="storage-logo-box">
           <img src={myStLogo} alt="My storage" />
         </Link>
-        <span className="storage-logo-box">
+        <Link to={`global-storage`} className="storage-logo-box">
           <img src={globalStLogo} alt="Global storage" />
-        </span>
+        </Link>
       </div>
       <div className="header_button_container ">
         <Link

@@ -1,63 +1,84 @@
-export const BoardData = [
+const BoardData = [
   {
+    id: 0,
     title: "test title",
     writer: "test writer",
     content: "it is good",
     timestamp: new Date().getTime(),
+    type: 0,
   },
   {
+    id: 1,
     title: "test title1",
     writer: "test writer1",
     content: "it is good1",
     timestamp: new Date().getTime(),
+    type: 1,
   },
   {
+    id: 2,
     title: "test title2",
     writer: "test writer2",
     content: "it is good2",
     timestamp: new Date().getTime(),
+    type: 0,
   },
   {
+    id: 3,
     title: "test title3",
     writer: "test writer3",
     content: "it is good3",
     timestamp: new Date().getTime(),
+    type: 1,
   },
   {
+    id: 4,
     title: "test title4",
     writer: "test writer4",
     content: "it is good4",
     timestamp: new Date().getTime(),
+    type: 0,
   },
-
   {
+    id: 5,
     title: "test title5",
     writer: "test writer5",
     content: "it is good5",
     timestamp: new Date().getTime(),
+    type: 1,
   },
   {
+    id: 6,
     title: "test title6",
     writer: "test writer6",
     content: "it is good6",
     timestamp: new Date().getTime(),
+    type: 0,
   },
   {
+    id: 7,
     title: "test title7",
     writer: "test writer7",
     content: "it is good7",
     timestamp: new Date().getTime(),
+    type: 1,
   },
   {
+    id: 8,
     title: "test title8",
     writer: "test writer8",
     content: "it is good8",
     timestamp: new Date().getTime(),
+    type: 0,
   },
   {
+    id: 9,
     title: "test title9",
     writer: "test writer9",
     content: "it is good9",
     timestamp: new Date().getTime(),
+    type: 1,
   },
 ];
+
+export default BoardData;
