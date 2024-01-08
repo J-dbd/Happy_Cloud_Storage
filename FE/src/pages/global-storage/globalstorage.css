@@ -18,12 +18,11 @@
   flex: 2;
   height: 100%;
 
-  margin: 0.5em 0 0.5em 0;
+  margin: 0.5em 0 0 0;
 }
 
 .board {
   flex: 1;
-  /* article들이 세로로 나열되도록 설정 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +31,7 @@
 .board > article {
   /* article들 사이의 간격을 최소화 */
   margin-top: 5px;
-  margin-bottom: 5px; /* 이 값을 조절하여 원하는 간격을 설정하세요. */
+  margin-bottom: 5px;
 }
 
 .loading {

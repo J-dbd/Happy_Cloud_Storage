@@ -4,11 +4,11 @@
   --fontFamily_normal_Gothic: "Noto Sans KR";
   --fontFamily_titleEng: "Saira Stencil One";
   /* font size */
-  --fontSize_title: "35px";
-  --fontSize_xlarge: "30px";
-  --fontSize_medinum: "25px";
-  --fontSize_normal: "18px";
-  --fontSize_small: "15px";
+  --fontSize_title: 35px;
+  --fontSize_xlarge: 30px;
+  --fontSize_medinum: 25px;
+  --fontSize_normal: 18px;
+  --fontSize_small: 15px;
   /* colors */
   --color_LightBlue: #8ecae6;
   --color_DarkerBlue: #219ebc;

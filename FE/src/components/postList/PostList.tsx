@@ -122,7 +122,6 @@ const PostList = ({ postData }: PostListProps) => {
             </button>
           </form>
           <h3 className="font-bold text-lg">수정하기</h3>
-          테스트중입니다
           {selectedPost && (
             <PostForm
               existTitle={selectedPost.title}

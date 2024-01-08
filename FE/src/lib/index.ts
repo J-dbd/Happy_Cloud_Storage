@@ -6,10 +6,17 @@ export interface Route {
 
 //for board
 
+export interface MyComment {
+  writer: string;
+  email: string;
+  msg: string;
+  timestamp: number;
+}
 export interface Post {
   id: number;
   title: string;
   writer: string;
+  email: string;
   content: string;
   timestamp: number;
   /**
@@ -17,4 +24,5 @@ export interface Post {
    * type 1: private
    */
   type: number;
+  comments: MyComment[];
 }

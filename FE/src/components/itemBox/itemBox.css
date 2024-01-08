@@ -1,3 +1,4 @@
+@import url("@/lib/Variables.css");
 /* #box-container {
   padding: 0 0.25em 0.25em 0.25em;
   box-sizing: border-box;
@@ -21,6 +22,7 @@
 
   text-align: left;
   font-weight: bold;
+  font-size: var(--fontSize_medinum);
 }
 
 #post-wd {
@@ -33,13 +35,23 @@
 #post-edcontainer {
   justify-content: flex-end;
   padding: 0 2px 0.5em 0;
+  border-bottom: 0.5px solid gray;
 }
 #post-ed {
   width: 9%;
   margin-right: 3px;
+  flex: 1;
 }
 
 #post-content {
   flex: 1;
+  min-height: 4em;
   text-align: left;
+}
+
+#post-comment {
+  cursor: pointer;
+  flex: 9;
+  text-align: left;
+  padding-left: 5px;
 }
