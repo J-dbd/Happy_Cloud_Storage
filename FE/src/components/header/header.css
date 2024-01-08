@@ -1,11 +1,40 @@
 @import url("@/lib/Variables.css");
 
-#header_logo_container {
-  width: 90%;
+/*header containers */
+.header_logo_container {
+  flex: 1;
 }
 
+.header_storages-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.header_button_container {
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*In storage container (2)*/
+.storage-logo-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
+  max-width: 10%;
+  max-height: 70%;
+
+  min-width: 15%;
+  max-height: 50%;
+
+  cursor: pointer;
+}
+/*In logo container (1)*/
 #logo_box {
-  width: 8%;
+  width: 15%;
   min-width: 50px;
   height: 70%;
   min-height: 50px;
@@ -23,11 +52,11 @@
   cursor: pointer;
 }
 
-#header_login {
-  width: 10%;
-  min-width: 100px;
+/*In button container (3)*/
+#button_login {
+  margin-left: auto;
   padding: 1em;
 
-  margin: auto;
-  display: block;
+  width: 10%;
+  min-width: 100px;
 }

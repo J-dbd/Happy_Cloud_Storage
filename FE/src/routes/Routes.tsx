@@ -8,6 +8,7 @@ import { Route } from "@/lib";
 import Login from "@/pages/login/Login";
 import Landing from "@/pages/landing/Landing";
 import SignUp from "@/pages/signup/Signup";
+import MyStroage from "@/pages/my-storage/MyStorage";
 
 const ROUTES: Route[] = [
   {
@@ -21,6 +22,10 @@ const ROUTES: Route[] = [
   {
     path: "signUp",
     element: <SignUp />,
+  },
+  {
+    path: "my-storage",
+    element: <MyStroage />,
   },
 ];
 export default ROUTES;
