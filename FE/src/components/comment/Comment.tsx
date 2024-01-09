@@ -21,6 +21,7 @@ const Comments = ({ comments, isShow }: CmtList) => {
     }
   };
   console.log("[comments/data] :", comments);
+
   if (comments.length == 0) {
     return (
       <>
