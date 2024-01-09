@@ -20,7 +20,7 @@ const Comments = ({ comments, isShow }: CmtList) => {
       setContent(newContent);
     }
   };
-  console.log(comments);
+  console.log("comments?", comments);
   if (comments.length == 0) {
     return (
       <>
