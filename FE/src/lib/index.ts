@@ -26,3 +26,33 @@ export interface Post {
   type: number;
   comments: MyComment[];
 }
+
+/** TYPES for API */
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
+export interface SignupData extends LoginData {
+  nickname: string;
+}
+
+export interface NewPostData {
+  title: string;
+  content: string;
+}
+
+export interface DeletePostData {
+  post_id: string;
+}
+
+export interface UpdatePostData {
+  postId: string;
+  title: string;
+  content: string;
+}
+
+export interface DeleteCommentData {
+  post_id: string;
+  comment_id: string;
+}

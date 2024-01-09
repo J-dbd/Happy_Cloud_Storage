@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 import "./header.css";
 import HCSLogo from "/HCS_logo.svg";
-import { useState } from "react";
 
 import myStLogo from "/myStorage_logo.svg";
 import globalStLogo from "/globalStorage.logo.svg";
 
+import { loginState } from "@/recoil/loginState";
+import { useRecoilState } from "recoil";
+
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginData, setLoginData] = useRecoilState(loginState);
+  const handleLogOut = () => {
+    setLoginData({ ...loginData, isLoggedIn: false, token: "" });
+  };
   return (
     <header>
       <div className="header_logo_container">
@@ -33,8 +38,9 @@ const Header = () => {
         focus:outline-none  font-medium
         rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600
         dark:hover:bg-blue-700 cursor-pointer"
+          onClick={handleLogOut}
         >
-          로그인
+          {loginData.isLoggedIn ? "로그아웃" : "로그인"}
         </Link>
       </div>
     </header>
