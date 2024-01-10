@@ -1,18 +1,27 @@
-import { SubmitButton } from "@/components/buttons/Buttons";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Form } from "react-router-dom";
+import { SubmitButton } from "@/components/buttons/Buttons";
 
+import { useRecoilValue } from "recoil";
+import { loginState } from "@/recoil/loginState";
+import { api_createNewPost } from "@/api/API";
+
+import { toast } from "react-toastify";
+import Loading from "@/components/loading/Loading";
 interface ExistContent {
+  fetchData?: () => void;
   existTitle?: string;
   existContent?: string;
 }
-const PostForm = ({ existTitle, existContent }: ExistContent) => {
+const PostForm = ({ fetchData, existTitle, existContent }: ExistContent) => {
   const initalizeTitle = existTitle ? existTitle : "";
   const initializeContent = existContent ? existContent : "";
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [isOverLimit, setIsOverLimit] = useState<boolean>(false);
+  const loginData = useRecoilValue(loginState);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let newContent = e.target.value;
@@ -29,6 +38,27 @@ const PostForm = ({ existTitle, existContent }: ExistContent) => {
     setTitle(newTitle);
   };
 
+  const handlePost = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const recoilToken = loginData.token;
+      console.log(title, content, recoilToken);
+      const res = await api_createNewPost({ title, content }, recoilToken);
+      console.log("[PostF] post성공");
+      setTitle("");
+      setContent("");
+      toast.success("성공적으로 게시되었습니다!", { autoClose: 1600 });
+      fetchData?.();
+    } catch (err) {
+      console.log(err);
+      toast.error(`에러 발생! ${err}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (existTitle) setTitle(existTitle);
     if (existContent) setContent(existContent);
@@ -36,8 +66,15 @@ const PostForm = ({ existTitle, existContent }: ExistContent) => {
 
   return (
     <>
-      <Form className="space-y-6" action="#" method="POST">
+      <Form
+        className="space-y-6"
+        action="#"
+        method="POST"
+        onSubmit={handlePost}
+      >
         {/* <form className="space-y-6" action="#" method="POST"> */}
+        {loading && <Loading />}
+
         <div>
           <div className="mt-2">
             <input

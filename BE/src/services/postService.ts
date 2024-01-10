@@ -83,6 +83,8 @@ class postServices {
     newComment["commentId"] = comment_id;
     newComment["writer"] = writer;
     newComment["nickname"] = user?.nickname;
+
+    console.log("post_id/ newComment??", post_id, newComment);
     const addedNC = await Post.CreateComment({
       post_id: post_id,
       newComment: newComment,

@@ -6,25 +6,42 @@ export interface Route {
 
 //for board
 
+// export interface MyComment {
+//   writer: string;
+//   email: string;
+//   msg: string;
+//   timestamp: number;
+// }
+// export interface Post {
+//   id: number;
+//   title: string;
+//   writer: string;
+//   email: string;
+//   content: string;
+//   timestamp: number;
+//   /**
+//    * type 0: global
+//    * type 1: private
+//    */
+//   type: number;
+//   comments: MyComment[];
+// }
+
 export interface MyComment {
-  writer: string;
-  email: string;
+  commentId?: string;
+  writer?: string;
+  nickname?: string;
   msg: string;
-  timestamp: number;
+  createdAt: string;
 }
 export interface Post {
-  id: number;
+  postId: string;
   title: string;
   writer: string;
-  email: string;
+  nickname: string;
   content: string;
-  timestamp: number;
-  /**
-   * type 0: global
-   * type 1: private
-   */
-  type: number;
-  comments: MyComment[];
+  comments: Array<MyComment>;
+  createdAt: string;
 }
 
 /** TYPES for API */
@@ -44,6 +61,7 @@ export interface NewPostData {
 
 export interface DeletePostData {
   post_id: string;
+  token: string;
 }
 
 export interface UpdatePostData {

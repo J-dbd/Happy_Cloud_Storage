@@ -63,51 +63,91 @@ export const api_signUp = async (data: SignupData) => {
   return instance.post(url, data);
 };
 
-// get current user for checking
+// get current user for checking: login_required
 export const api_getCurrentUser = async () => {
   const url = "user/current";
-  return instance.get(url);
+  const storageData = sessionStorage.getItem("loginState-persist-atom");
+  if (storageData) {
+    const parsedData = JSON.parse(storageData);
+    const token = parsedData.loginState.token;
+    console.log("[API]", token);
+
+    return instance.get(url, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+  }
 };
 
 /** POST */
 
 // get posts
-export const api_getPostList = async (type: number) => {
+export const api_getPostList = async (type: number, token: string) => {
   let category = "";
   if (type == 1) {
-    category = "my-storeage";
+    category = "my-storage"; //login_required
   } else if (type == 0) {
     category = "global-storage";
   }
   const url = `post/${category}`;
-  return instance.get(url);
+  return instance.get(url, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };
 
-// create post
-export const api_createNewPost = async (data: NewPostData) => {
+// create post : login_required
+export const api_createNewPost = async (data: NewPostData, token: string) => {
   const url = "post/new";
-  return instance.post(url, data);
+  return instance.post(url, data, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };
 
-// delete post
-export const api_deletePost = async (data: DeletePostData) => {
+// delete post: login_required
+export const api_deletePost = async (post_id: string, token: string) => {
   const url = "post/delete";
-  return instance.put(url, data);
+  return instance.put(url, post_id, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };
 
-// update post
+// update post : login_required
 export const api_updatePost = async (data: UpdatePostData) => {
   const url = "post/update";
-  return instance.put(url, data);
+  return instance.put(url, data, {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
 };
 
-// create comment
-export const api_createComment = async (post_id: string, msg: string) => {
-  const url = post_id;
-  return instance.post(url, msg);
+// create comment: login_required
+export const api_createComment = async (
+  post_id: string,
+  msg: string,
+  token: string
+) => {
+  const data = { post_id, msg };
+  const url = "/comment/new";
+  return instance.post(url, data, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
 };
-// delete comment
+// delete comment :login_required
 export const api_deleteComment = async (data: DeleteCommentData) => {
   const url = "comment/delete";
-  return instance.put(url, data);
+  return instance.put(url, data, {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
 };

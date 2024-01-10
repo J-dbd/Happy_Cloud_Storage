@@ -2,14 +2,20 @@ import { MyComment } from "@/lib";
 import { Form } from "react-router-dom";
 import { useState } from "react";
 import { SubmitButton } from "@/components/buttons/Buttons";
+import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { loginState } from "@/recoil/loginState";
 interface CmtList {
   comments: MyComment[];
   isShow: boolean;
+  post_id: string;
 }
 import "./comment.css";
-const Comments = ({ comments, isShow }: CmtList) => {
+import { api_createComment } from "@/api/API";
+const Comments = ({ comments, isShow, post_id }: CmtList) => {
   const [content, setContent] = useState<string>("");
   const [isOverLimit, setIsOverLimit] = useState<boolean>(false);
+  const loginData = useRecoilValue(loginState);
 
   const handleContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     let newContent = e.target.value;
@@ -22,11 +28,26 @@ const Comments = ({ comments, isShow }: CmtList) => {
   };
   console.log("[comments/data] :", comments);
 
+  const handleComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const recoilToken = loginData.token;
+      console.log(content, recoilToken);
+      const res = await api_createComment(post_id, content, recoilToken);
+      console.log("[comment] post성공");
+      setContent("");
+      toast.success("성공적으로 게시되었습니다!", { autoClose: 1600 });
+    } catch (err) {
+      console.log(err);
+      toast.error(`에러 발생! ${err}`);
+    }
+  };
   if (comments.length == 0) {
     return (
       <>
         {isShow ? (
-          <Form className="space-y-6" action="#" method="POST">
+          <Form className="space-y-6" onSubmit={handleComment}>
             <div className="mt-1" id="comment-box">
               <textarea
                 id="comment-textarea"
@@ -65,18 +86,28 @@ const Comments = ({ comments, isShow }: CmtList) => {
           {comments.map((comment, idx) => (
             <div key={idx} className="single-comment-container">
               <div className="comment-top">
-                <h3 className="comment-writer">{comment.writer}</h3>
-                <p className="comment-timestamp">
-                  {new Date(comment.timestamp).toLocaleString()}
-                </p>
+                <h3 className="comment-writer">{comment.nickname}</h3>
+                <p className="comment-timestamp">{`${new Date(
+                  comment.createdAt
+                ).getFullYear()}-${(
+                  "0" +
+                  (new Date(comment.createdAt).getMonth() + 1)
+                ).slice(-2)}-${(
+                  "0" + new Date(comment.createdAt).getDate()
+                ).slice(-2)}`}</p>
               </div>
               <div className="comment-down">
                 <p className="comment-msg">{comment.msg}</p>
-                <p className="comment-down">삭제</p>
+                <p className="comment-d-box">삭제</p>
               </div>
             </div>
           ))}
-          <Form className="space-y-6" action="#" method="POST">
+          <Form
+            className="space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={handleComment}
+          >
             <div className="mt-1" id="comment-box">
               <textarea
                 id="comment-textarea"
