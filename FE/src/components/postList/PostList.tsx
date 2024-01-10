@@ -109,14 +109,22 @@ const PostList = ({ postData }: PostListProps) => {
     }
   }, [selectedPost]);
 
-  console.log("[PL/data]", postlist);
+  /** 변화를 감지하고 새로 추가된 post를 그려주는 함수 */
+  useEffect(() => {
+    if (postData) {
+      const newPostData = [...postData.slice(0, 3)];
+      setPostList(newPostData);
+      setPage(0);
+      setIsEnd(false);
+    }
+  }, [postData]);
 
   return (
     <>
       <section className="board">
         {postlist.map((data) => (
           <ItemBox
-            key={data.postId}
+            key={data._id}
             post={data}
             onEditClick={handleEdit}
             onDeleteClick={handleDeletePost}

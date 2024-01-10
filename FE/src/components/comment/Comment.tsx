@@ -26,7 +26,7 @@ const Comments = ({ comments, isShow, post_id }: CmtList) => {
       setContent(newContent);
     }
   };
-  console.log("[comments/data] :", comments);
+  //console.log("[comments/data] :", comments);
 
   const handleComment = async (e: React.FormEvent) => {
     e.preventDefault();

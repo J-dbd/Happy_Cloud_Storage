@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Form } from "react-router-dom";
 import { SubmitButton } from "@/components/buttons/Buttons";
-
+import { Post } from "@/lib";
 import { useRecoilValue } from "recoil";
 import { loginState } from "@/recoil/loginState";
 import { api_createNewPost } from "@/api/API";
@@ -9,11 +9,17 @@ import { api_createNewPost } from "@/api/API";
 import { toast } from "react-toastify";
 import Loading from "@/components/loading/Loading";
 interface ExistContent {
-  fetchData?: () => void;
+  fetchData: () => void;
   existTitle?: string;
   existContent?: string;
+  setBoardData: React.Dispatch<React.SetStateAction<Post[] | null>>;
 }
-const PostForm = ({ fetchData, existTitle, existContent }: ExistContent) => {
+const PostForm = ({
+  fetchData,
+  existTitle,
+  existContent,
+  setBoardData,
+}: ExistContent) => {
   const initalizeTitle = existTitle ? existTitle : "";
   const initializeContent = existContent ? existContent : "";
 
@@ -46,14 +52,17 @@ const PostForm = ({ fetchData, existTitle, existContent }: ExistContent) => {
       const recoilToken = loginData.token;
       console.log(title, content, recoilToken);
       const res = await api_createNewPost({ title, content }, recoilToken);
-      console.log("[PostF] post성공");
       setTitle("");
+      const newPost = res.data;
+      setBoardData((prevData) =>
+        prevData ? [newPost, ...prevData] : [newPost]
+      );
       setContent("");
-      toast.success("성공적으로 게시되었습니다!", { autoClose: 1600 });
-      fetchData?.();
+      toast.success("성공적으로 게시되었습니다!", { autoClose: 1500 });
+      //await fetchData();
     } catch (err) {
       console.log(err);
-      toast.error(`에러 발생! ${err}`);
+      toast.error(`에러 발생! ${err}`, { autoClose: 2000 });
     } finally {
       setLoading(false);
     }

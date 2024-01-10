@@ -19,7 +19,7 @@ const instance = axios.create({
 // 요청 인터셉터 추가하기
 instance.interceptors.request.use(
   function (res) {
-    console.log("Res", res);
+    // console.log("instance.interceptors.request", res);
     // 요청이 전달되기 전에 작업 수행
     return res;
   },
@@ -32,7 +32,7 @@ instance.interceptors.request.use(
 // 응답 인터셉터 추가하기
 instance.interceptors.response.use(
   function (response) {
-    console.log("resp", response);
+    // console.log("instance.interceptors.response", response);
     // 2xx 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
     // 응답 데이터가 있는 작업 수행
     return response;

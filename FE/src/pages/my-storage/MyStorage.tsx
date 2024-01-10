@@ -22,7 +22,6 @@ const MyStroage = () => {
     if (storageData) {
       const parsedData = JSON.parse(storageData);
       const token = parsedData.loginState.token;
-      console.log(token);
     }
     const recoilToken = loginData.token;
     await api_getPostList(1, recoilToken)
@@ -52,7 +51,7 @@ const MyStroage = () => {
           id="box-container"
         >
           <div className="w-full flex min-h-full flex-col justify-center  lg:p-1">
-            <PostForm fetchData={fetchData} />
+            <PostForm fetchData={fetchData} setBoardData={setBoardData} />
           </div>
         </div>
       </section>

@@ -22,7 +22,6 @@ const GlobalStorage = () => {
       .then((res) => {
         let globalData = res.data;
         globalData = globalData.reverse();
-        console.log("globalData", globalData);
         setBoardData(globalData);
         setIsLoading(false);
       })
@@ -34,6 +33,12 @@ const GlobalStorage = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("board data의 변화 감지");
+  //   console.log("boardData", boardData);
+  //   //fetchData();
+  // }, [boardData]);
 
   if (isLoading) {
     return <Loading />;
@@ -47,7 +52,7 @@ const GlobalStorage = () => {
           id="box-container"
         >
           <div className="w-full flex min-h-full flex-col justify-center  lg:p-1">
-            <PostForm fetchData={fetchData} />
+            <PostForm fetchData={fetchData} setBoardData={setBoardData} />
           </div>
         </div>
       </section>

@@ -35,6 +35,7 @@ export interface MyComment {
   createdAt: string;
 }
 export interface Post {
+  _id: string;
   postId: string;
   title: string;
   writer: string;
