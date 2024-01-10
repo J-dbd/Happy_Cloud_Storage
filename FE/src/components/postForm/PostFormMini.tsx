@@ -11,9 +11,8 @@ import Loading from "@/components/loading/Loading";
 interface ExistContent {
   existTitle?: string;
   existContent?: string;
-  setBoardData?: React.Dispatch<React.SetStateAction<Post[] | null>>;
 }
-const PostForm = ({ existTitle, existContent, setBoardData }: ExistContent) => {
+const PostFormMini = ({ existTitle, existContent }: ExistContent) => {
   const initalizeTitle = existTitle ? existTitle : "";
   const initializeContent = existContent ? existContent : "";
 
@@ -48,11 +47,9 @@ const PostForm = ({ existTitle, existContent, setBoardData }: ExistContent) => {
       const res = await api_createNewPost({ title, content }, recoilToken);
       setTitle("");
       const newPost = res.data;
-      if (setBoardData) {
-        setBoardData((prevData) =>
-          prevData ? [newPost, ...prevData] : [newPost]
-        );
-      }
+      setBoardData((prevData) =>
+        prevData ? [newPost, ...prevData] : [newPost]
+      );
       setContent("");
       toast.success("성공적으로 게시되었습니다!", { autoClose: 1500 });
       //await fetchData();
@@ -117,4 +114,4 @@ const PostForm = ({ existTitle, existContent, setBoardData }: ExistContent) => {
   );
 };
 
-export default PostForm;
+export default PostFormMini;

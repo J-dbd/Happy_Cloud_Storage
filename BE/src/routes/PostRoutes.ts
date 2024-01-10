@@ -109,33 +109,38 @@ postRouter.get(
     }
   }
 );
-postRouter.put("/post/delete", login_required, async function (req, res, next) {
-  try {
-    if (Object.keys(req.body).length === 0) {
-      throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
-      );
+postRouter.delete(
+  "/post/delete/:id",
+  login_required,
+  async function (req, res, next) {
+    try {
+      // if (Object.keys(req.body).length === 0) {
+      //   throw new Error(
+      //     "headers의 Content-Type을 application/json으로 설정해주세요"
+      //   );
+      // }
+      // 현재 user id
+      const user_id = req.currentUserId;
+      if (user_id == undefined) {
+        throw new Error("[comment/put] req.currentId issue");
+      }
+
+      //const { post_id } = req.body;
+      const post_id = req.params.id;
+
+      const deledtedPost = await postServices.DeletePost(post_id, user_id);
+
+      if (typeof deledtedPost === "string") {
+        throw new Error(deledtedPost);
+      }
+
+      console.log("deledtedPost", deledtedPost);
+      res.status(201).json(deledtedPost);
+    } catch (err) {
+      next(err);
     }
-    // 현재 user id
-    const user_id = req.currentUserId;
-    if (user_id == undefined) {
-      throw new Error("[comment/put] req.currentId issue");
-    }
-
-    const { post_id } = req.body;
-
-    const deledtedPost = await postServices.DeletePost(post_id, user_id);
-
-    if (typeof deledtedPost === "string") {
-      throw new Error(deledtedPost);
-    }
-
-    console.log("deledtedPost", deledtedPost);
-    res.status(201).json(deledtedPost);
-  } catch (err) {
-    next(err);
   }
-});
+);
 export { postRouter };
 
 /** comment */

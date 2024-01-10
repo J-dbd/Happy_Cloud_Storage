@@ -51,11 +51,11 @@ const MyStroage = () => {
           id="box-container"
         >
           <div className="w-full flex min-h-full flex-col justify-center  lg:p-1">
-            <PostForm fetchData={fetchData} setBoardData={setBoardData} />
+            <PostForm setBoardData={setBoardData} />
           </div>
         </div>
       </section>
-      <PostList postData={boardData} />
+      <PostList postData={boardData} setBoardData={setBoardData} />
     </div>
   );
 };

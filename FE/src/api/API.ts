@@ -49,8 +49,8 @@ instance.interceptors.response.use(
 // login
 
 export const api_login = async (data: LoginData) => {
-  console.log(import.meta.env.VITE_API_DOMAIN);
-  console.log("data", data);
+  // console.log(import.meta.env.VITE_API_DOMAIN);
+  // console.log("data", data);
   const body = data;
   const url = "user/login";
 
@@ -70,7 +70,7 @@ export const api_getCurrentUser = async () => {
   if (storageData) {
     const parsedData = JSON.parse(storageData);
     const token = parsedData.loginState.token;
-    console.log("[API]", token);
+    //console.log("[API]", token);
 
     return instance.get(url, {
       headers: {
@@ -110,8 +110,8 @@ export const api_createNewPost = async (data: NewPostData, token: string) => {
 
 // delete post: login_required
 export const api_deletePost = async (post_id: string, token: string) => {
-  const url = "post/delete";
-  return instance.put(url, post_id, {
+  const url = `post/delete/${post_id}`;
+  return instance.delete(url, {
     headers: {
       Authorization: "Bearer " + token,
     },

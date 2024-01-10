@@ -6,12 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import PostForm from "@/components/postForm/PostForm";
 interface PostListProps {
   postData: Post[] | null;
+  setBoardData: React.Dispatch<React.SetStateAction<Post[] | null>>;
 }
 import { useRecoilValue } from "recoil";
 import { loginState } from "@/recoil/loginState";
 import { api_deletePost } from "@/api/API";
 import { toast } from "react-toastify";
-const PostList = ({ postData }: PostListProps) => {
+const PostList = ({ postData, setBoardData }: PostListProps) => {
   /** States for Infinit Scroll */
 
   const initialPostData = postData ? [...postData.slice(0, 3)] : [];
@@ -88,12 +89,15 @@ const PostList = ({ postData }: PostListProps) => {
     try {
       {
         const recoilToken = loginData.token;
+        console.log("recoilToken", recoilToken);
         await api_deletePost(post_id, recoilToken).then((res) => {
-          let newPostlist = res.data;
-          newPostlist = postlist.reverse();
+          let newPostlist = res.data; //boolean으로 반환
+          newPostlist = postlist.filter((post) => post.postId !== post_id);
+          //newPostlist = postlist.reverse();
           console.log("postlist", newPostlist);
           toast.success("성공적으로 삭제되었습니다!", { autoClose: 1600 });
           setPostList(newPostlist);
+          setBoardData(newPostlist);
         });
       }
     } catch (err) {
@@ -122,9 +126,9 @@ const PostList = ({ postData }: PostListProps) => {
   return (
     <>
       <section className="board">
-        {postlist.map((data) => (
+        {postlist.map((data, idx) => (
           <ItemBox
-            key={data._id}
+            key={idx}
             post={data}
             onEditClick={handleEdit}
             onDeleteClick={handleDeletePost}
