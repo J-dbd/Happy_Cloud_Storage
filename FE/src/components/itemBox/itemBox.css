@@ -1,0 +1,57 @@
+@import url("@/lib/Variables.css");
+/* #box-container {
+  padding: 0 0.25em 0.25em 0.25em;
+  box-sizing: border-box;
+
+  background: #f9f9f9;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #219ebc;
+} */
+
+#post-container {
+  flex: 0.5;
+  justify-content: "flex-end";
+}
+
+#post-title {
+  padding-left: 5px;
+  min-width: 20px;
+
+  flex: 1.2;
+
+  text-align: left;
+  font-weight: bold;
+  font-size: var(--fontSize_medinum);
+}
+
+#post-wd {
+  margin-right: 2px;
+
+  min-width: 10px;
+  flex: 0.5;
+}
+
+#post-edcontainer {
+  justify-content: flex-end;
+  padding: 0 2px 0.5em 0;
+  border-bottom: 0.5px solid gray;
+}
+#post-ed {
+  width: 9%;
+  margin-right: 3px;
+  flex: 1;
+}
+
+#post-content {
+  flex: 1;
+  min-height: 4em;
+  text-align: left;
+}
+
+#post-comment {
+  cursor: pointer;
+  flex: 9;
+  text-align: left;
+  padding-left: 5px;
+}

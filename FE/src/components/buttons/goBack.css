@@ -1,0 +1,32 @@
+.backButton {
+  /* 가입하기 버튼 */
+
+  box-sizing: border-box;
+
+  margin-top: 10px;
+
+  //position: absolute;
+  /* width: 150px;
+  height: 40px;
+  left: 645px;
+  top: 799px; */
+
+  display: flex;
+  width: 50%;
+  justify-content: center;
+
+  border-bottom: 2px solid #8ecae6;
+  font-weight: 600;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-bottom: 5px;
+
+  background: transparent;
+}
+
+.backButton:hover {
+  border-bottom: 2px solid var(--color_SlientYello);
+}

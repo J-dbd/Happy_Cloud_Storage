@@ -1,0 +1,122 @@
+/*for tailwind setting*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* for HTML */
+:root {
+  font-family: "Noto Sans KR", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  /* for dark mode setting */
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* default setting */
+a {
+  font-weight: 500;
+  color: var(--color_LightBlue);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color_SlientOrange);
+}
+
+/*whole page screen*/
+body,
+html {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+  width: 100%;
+
+  min-height: 100vh;
+  min-width: 320px;
+
+  background: var(--color_BgWhite);
+}
+
+#root {
+  margin: 0 auto;
+
+  height: 100vh;
+  width: 100vw;
+
+  min-height: 100vh;
+  min-width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+
+  text-align: center;
+  line-height: 1.5;
+
+  overflow: auto;
+}
+
+header {
+  padding: 0 3em 0 3em;
+
+  //position: fixed;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  min-height: 100px;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 100; /* toppest */
+
+  background-color: var(--color_NavyBlue);
+}
+
+/* space for rendered components*/
+main {
+  padding: 0 0 10px 0;
+
+  height: 90vh; /* header: 10vh */
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  flex-grow: 1;
+
+  overflow: auto;
+}
+
+#box-container {
+  padding: 0 0.25em 0.25em 0.25em;
+  box-sizing: border-box;
+
+  background: #f9f9f9;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #219ebc;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: var(--color_SlientOrange);
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
