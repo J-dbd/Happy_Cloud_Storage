@@ -5,7 +5,7 @@
 일상의 행복과 그 순간의 감정을 적어 보관하고 친구들과 공유할 수 있는 게시판입니다.
 
 # 1. 개요
-
+![HCS_로고](./FE/public/HCS_logo.svg)
 - 서비스명: Happy Cloud Storage 행복 클라우드 스토리지
 - 개발 기간: 23.01.04 - 23.01.10 (1차)
 - 주제: 게시판 구현 프로젝트
@@ -18,9 +18,9 @@
 
 ## 2-2. 와이어프레임
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FzaCaKeLDIAX113nBTNMYRy%2FJungle_Board%3Ftype%3Ddesign%26node-id%3D0%253A1%26mode%3Ddesign%26t%3DHVYRpqssqXQhM0FJ-1" allowfullscreen></iframe>
+[발표자료: 피그마](https://www.figma.com/file/zaCaKeLDIAX113nBTNMYRy/Jungle_Board?type=design&node-id=0%3A1&mode=design&t=HVYRpqssqXQhM0FJ-1)
 
-[발표자료](https://docs.google.com/presentation/d/1eHHHLCR3ywSqWmwIpp-BuCqXxDLf-4h4w7rMWyHXWHk/edit?usp=sharing)
+[발표자료: 구글 슬라이](https://docs.google.com/presentation/d/1eHHHLCR3ywSqWmwIpp-BuCqXxDLf-4h4w7rMWyHXWHk/edit?usp=sharing)
 
 ## 2-3. 주요 기능
 
@@ -101,9 +101,9 @@
 
 ## Create React App이 아닌 `Vite`
 
-|     | CRA                                                           | vite                                                 |
-| --- | ------------------------------------------------------------- | ---------------------------------------------------- |
-|     | webpack based build tool (by javscript: interpreted language) | esBuild based build tool (by Go: low-level-language) |
+| CRA                                                           | vite                                                 |
+| ------------------------------------------------------------- | ---------------------------------------------------- |
+| webpack based build tool (by javscript: interpreted language) | esBuild based build tool (by Go: low-level-language) |
 
 - vite는 쉽게 바뀌지 않는 javascript소스 코드를 esbuild를 통해 ESM으로 변환하고, 수정이 잦고 컴파일링이 필요한 js소스 코드는 navtive ES module(EcmaScript Module)을 기반으로 제공한다.
 
