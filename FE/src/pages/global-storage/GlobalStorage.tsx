@@ -1,33 +1,44 @@
-import BoardData from "@/lib/boardData";
 import "./globalstorage.css";
 import { Post } from "@/lib";
 
 import { useEffect, useState } from "react";
-import Loading from "@/components/loading/Loading";
+import { useRecoilValue } from "recoil";
+import { loginState } from "@/recoil/loginState";
 
-//for React Lazy
+import Loading from "@/components/loading/Loading";
 import PostForm from "@/components/postForm/PostForm";
 import PostList from "@/components/postList/PostList";
 
+import { api_getPostList } from "@/api/API";
+
 const GlobalStorage = () => {
-  //TODO: 게시글 정보 받아오기
-  //let boardData: Post[];
-  //boardData = BoardData;
-
   const [boardData, setBoardData] = useState<Post[] | null>(null);
-
   const [isLoading, setIsLoading] = useState(true);
+  const loginData = useRecoilValue(loginState);
+
+  const fetchData = async () => {
+    const recoilToken = loginData.token;
+    await api_getPostList(0, recoilToken)
+      .then((res) => {
+        let globalData = res.data;
+        globalData = globalData.reverse();
+        setBoardData(globalData);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await BoardData;
-      const globalData = data.filter((d) => d.type == 0);
-      setBoardData(globalData);
-      setIsLoading(false);
-    };
-
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("board data의 변화 감지");
+  //   console.log("boardData", boardData);
+  //   //fetchData();
+  // }, [boardData]);
 
   if (isLoading) {
     return <Loading />;
@@ -41,11 +52,11 @@ const GlobalStorage = () => {
           id="box-container"
         >
           <div className="w-full flex min-h-full flex-col justify-center  lg:p-1">
-            <PostForm />
+            <PostForm setBoardData={setBoardData} />
           </div>
         </div>
       </section>
-      <PostList postData={boardData} />
+      <PostList postData={boardData} setBoardData={setBoardData} />
     </div>
   );
 };

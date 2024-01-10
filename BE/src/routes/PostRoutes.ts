@@ -109,38 +109,43 @@ postRouter.get(
     }
   }
 );
-postRouter.put("/post/delete", login_required, async function (req, res, next) {
-  try {
-    if (Object.keys(req.body).length === 0) {
-      throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
-      );
+postRouter.delete(
+  "/post/delete/:id",
+  login_required,
+  async function (req, res, next) {
+    try {
+      // if (Object.keys(req.body).length === 0) {
+      //   throw new Error(
+      //     "headers의 Content-Type을 application/json으로 설정해주세요"
+      //   );
+      // }
+      // 현재 user id
+      const user_id = req.currentUserId;
+      if (user_id == undefined) {
+        throw new Error("[comment/put] req.currentId issue");
+      }
+
+      //const { post_id } = req.body;
+      const post_id = req.params.id;
+
+      const deledtedPost = await postServices.DeletePost(post_id, user_id);
+
+      if (typeof deledtedPost === "string") {
+        throw new Error(deledtedPost);
+      }
+
+      console.log("deledtedPost", deledtedPost);
+      res.status(201).json(deledtedPost);
+    } catch (err) {
+      next(err);
     }
-    // 현재 user id
-    const user_id = req.currentUserId;
-    if (user_id == undefined) {
-      throw new Error("[comment/put] req.currentId issue");
-    }
-
-    const { post_id } = req.body;
-
-    const deledtedPost = await postServices.DeletePost(post_id, user_id);
-
-    if (typeof deledtedPost === "string") {
-      throw new Error(deledtedPost);
-    }
-
-    console.log("deledtedPost", deledtedPost);
-    res.status(201).json(deledtedPost);
-  } catch (err) {
-    next(err);
   }
-});
+);
 export { postRouter };
 
 /** comment */
 postRouter.post(
-  "/comment/:id",
+  "/comment/new",
   login_required,
   async function (req, res, next) {
     try {
@@ -156,8 +161,9 @@ postRouter.post(
         throw new Error("[comment/post] req.currentId issue");
       }
       const writer = user_id;
-      const post_id = req.params.id;
-      const { msg } = req.body;
+      //const post_id = req.params.id;
+      console.log("??", req.body);
+      const { post_id, msg } = req.body;
 
       const newComment = { msg };
 
@@ -204,6 +210,36 @@ postRouter.put(
       }
 
       res.status(201).json(deledtedPost);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+postRouter.get(
+  "/comment/list",
+  login_required,
+  async function (req, res, next) {
+    try {
+      if (Object.keys(req.body).length === 0) {
+        throw new Error(
+          "headers의 Content-Type을 application/json으로 설정해주세요"
+        );
+      }
+
+      // 현재 user id
+      const user_id = req.currentUserId;
+      if (user_id == undefined) {
+        throw new Error("[comment/put] req.currentId issue");
+      }
+
+      const post_id = req.params.post_id;
+
+      const post = await postServices.getPost(post_id);
+
+      if (post) {
+        res.status(201).json(post.comments);
+      }
     } catch (err) {
       next(err);
     }

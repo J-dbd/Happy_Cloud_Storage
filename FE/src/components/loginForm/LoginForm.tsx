@@ -23,7 +23,7 @@ const LoginForm = () => {
       //store JWT at Localstorage
       toast.success("로그인 성공!", { autoClose: 1500 });
       const token = res.data.token;
-      window.localStorage.setItem("currentUserId", token);
+      //window.localStorage.setItem("currentUserId", token);
       setloginData({ ...loginData, isLoggedIn: true, token: token });
 
       navigate("/my-storage");

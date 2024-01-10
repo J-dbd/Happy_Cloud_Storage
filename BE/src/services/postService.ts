@@ -55,7 +55,7 @@ class postServices {
 
   static async getPostByUserId(user_id: string) {
     const postList = await Post.FindByUserId(user_id);
-    console.log("[PS] postlist", postList);
+    //console.log("[PS] postlist", postList);
     return postList;
   }
 
@@ -72,22 +72,24 @@ class postServices {
     post_id: string,
     newComment: CommentType
   ) {
-    console.log(
-      "[PS] writer, post_id, newcomment",
-      writer,
-      post_id,
-      newComment
-    );
+    // console.log(
+    //   "[PS] writer, post_id, newcomment",
+    //   writer,
+    //   post_id,
+    //   newComment
+    // );
     const user = await User.findByUserId(writer);
     const comment_id = uuidv4();
     newComment["commentId"] = comment_id;
     newComment["writer"] = writer;
     newComment["nickname"] = user?.nickname;
+
+    // console.log("post_id/ newComment??", post_id, newComment);
     const addedNC = await Post.CreateComment({
       post_id: post_id,
       newComment: newComment,
     });
-    console.log("[PS] addedNC ", addedNC);
+    //console.log("[PS] addedNC ", addedNC);
     return addedNC;
   }
 

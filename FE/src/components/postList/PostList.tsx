@@ -6,9 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import PostForm from "@/components/postForm/PostForm";
 interface PostListProps {
   postData: Post[] | null;
+  setBoardData: React.Dispatch<React.SetStateAction<Post[] | null>>;
 }
-
-const PostList = ({ postData }: PostListProps) => {
+import { useRecoilValue } from "recoil";
+import { loginState } from "@/recoil/loginState";
+import { api_deletePost } from "@/api/API";
+import { toast } from "react-toastify";
+const PostList = ({ postData, setBoardData }: PostListProps) => {
   /** States for Infinit Scroll */
 
   const initialPostData = postData ? [...postData.slice(0, 3)] : [];
@@ -17,7 +21,7 @@ const PostList = ({ postData }: PostListProps) => {
   const [isEnd, setIsEnd] = useState<boolean>(false);
 
   const [selectedPost, setSelectPost] = useState<Post | null>(null);
-
+  const loginData = useRecoilValue(loginState);
   /** Infinit scrolling */
   const loader = useRef(null);
   const handleObserver: IntersectionObserverCallback = (entities) => {
@@ -72,12 +76,33 @@ const PostList = ({ postData }: PostListProps) => {
     }
   };
 
-  const handleEdit = (id: number) => {
-    let targetPost = postlist.find((post) => id === post.id);
+  const handleEdit = (id: string) => {
+    let targetPost = postlist.find((post) => id === post.postId);
     if (targetPost) {
       setSelectPost(targetPost);
     } else {
       console.log("[ERROR] PostList");
+    }
+  };
+
+  const handleDeletePost = async (post_id: string) => {
+    try {
+      {
+        const recoilToken = loginData.token;
+        console.log("recoilToken", recoilToken);
+        await api_deletePost(post_id, recoilToken).then((res) => {
+          let newPostlist = res.data; //boolean으로 반환
+          newPostlist = postlist.filter((post) => post.postId !== post_id);
+          //newPostlist = postlist.reverse();
+          console.log("postlist", newPostlist);
+          toast.success("성공적으로 삭제되었습니다!", { autoClose: 1600 });
+          setPostList(newPostlist);
+          setBoardData(newPostlist);
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`에러 발생! ${err}`);
     }
   };
 
@@ -88,13 +113,26 @@ const PostList = ({ postData }: PostListProps) => {
     }
   }, [selectedPost]);
 
-  console.log("[PL/data]", postlist);
+  /** 변화를 감지하고 새로 추가된 post를 그려주는 함수 */
+  useEffect(() => {
+    if (postData) {
+      const newPostData = [...postData.slice(0, 3)];
+      setPostList(newPostData);
+      setPage(0);
+      setIsEnd(false);
+    }
+  }, [postData]);
 
   return (
     <>
       <section className="board">
-        {postlist.map((data) => (
-          <ItemBox key={data.id} post={data} onEditClick={handleEdit} />
+        {postlist.map((data, idx) => (
+          <ItemBox
+            key={idx}
+            post={data}
+            onEditClick={handleEdit}
+            onDeleteClick={handleDeletePost}
+          />
         ))}
         {isEnd ? (
           <>
